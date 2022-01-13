@@ -1,0 +1,55 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      {% if not request.user.is_authenticated %}
+      <span class="brand-text font-weight-light">AlmaGest</span>
+      {% else %}
+      <span class="brand-text font-weight-light">Bienvenido al sistema de AlmaGest, {{ request.user.username }}!</span>
+      {% endif %}
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a href="{% url 'login' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inicio de sesión</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'user:user_create' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registrese en el sistema</p>
+                </a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:user_update' pk=request.user.id %}">
+                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                    <p>Mi perfil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                    <p>Cerrar sesión</p>
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
