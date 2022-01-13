@@ -30,19 +30,20 @@ class UserForm(UserCreationForm):
                 }
             ),
             'fechaNacimiento': DateInput(
-                format='%Y-%m-%d',
+                format='%d-%m-%Y',
                 attrs={
-                    'value': datetime.now().strftime('%Y-%m-%d'),
+                    'value': datetime.now().strftime('%d-%m-%Y'),
+                    'placeholder': '01-01-2022',
                                        }
                     ),
             'dni': TextInput(
                 attrs={ 
-                    'placeholder': 'Ingrese su DNI'
+                    'placeholder': '00000000A'
                 }
             ),
             'username': TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su username',
+                    'placeholder': 'Ingrese su nombre de usuario',
                 }
             ),
         }
