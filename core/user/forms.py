@@ -30,10 +30,9 @@ class UserForm(UserCreationForm):
                 }
             ),
             'fechaNacimiento': DateInput(
-                format='%d-%m-%Y',
+                format='%Y-%m-%d',
                 attrs={
-                    'value': datetime.now().strftime('%d-%m-%Y'),
-                    'placeholder': '01-01-2022',
+                    'value': datetime.now().strftime('%Y-%m-%d'),
                                        }
                     ),
             'dni': TextInput(

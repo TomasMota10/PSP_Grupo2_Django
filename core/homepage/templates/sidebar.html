@@ -2,9 +2,9 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       {% if not request.user.is_authenticated %}
-      <span class="brand-text font-weight-light">AlmaGest</span>
+      <span class="brand-text font-weight-light"><b><font color="#33FFFF">AlmaGest</font></b></span>
       {% else %}
-      <span class="brand-text font-weight-light">Bienvenido al sistema de AlmaGest, {{ request.user.username }}!</span>
+      <span class="brand-text font-weight-light"><b><font color="#33FFFF">AlmaGest</font></b></span>
       {% endif %}
     </a>
 
@@ -21,27 +21,27 @@
               {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a href="{% url 'login' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inicio de sesión</p>
+                  <i class="fas fa-sign-in-alt"></i>
+                  <p> Inicio de sesión</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'user:user_create' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registrese en el sistema</p>
+                  <i class="fa fa-user-plus"></i>
+                  <p> Registrese en el sistema</p>
                 </a>
               </li>
               {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'user:user_update' pk=request.user.id %}">
-                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                    <p>Mi perfil</p>
+                    <i class="fas fa-user-edit" aria-hidden="true"></i>
+                    <p> Editar Perfil</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">
-                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                    <p>Cerrar sesión</p>
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    <p> Cerrar sesión</p>
                 </a>
               </li>
               {% endif %}

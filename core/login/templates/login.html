@@ -20,7 +20,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{% url 'index' %}"><b>ALMA</b>GEST</a>
+        <a href="{% url 'index' %}"><b><font color='#000080'>ALMA</font></b><font color='#FF0000'>GEST</a>
     </div>
     <div class="card">
         <div class="card-body login-card-body">
@@ -50,8 +50,8 @@
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-sign-in-alt"></i> Iniciar sesión 
                         </button>
-                        <button onclick="window.history.back();">Volver atrás</button>
-    
+                        
+                        <input type="button" value="Cancelar" class="btn btn-danger btn-block" onClick="history.go(-1);">
 
                     </div>
                 </div>
@@ -81,7 +81,7 @@
             {% for m in messages %}
                 <script>
                     Swal.fire({
-                        title: 'Information',
+                        title: 'Lo has logrado!',
                         text: "{{m}}",
                         icon: 'success'
                     })

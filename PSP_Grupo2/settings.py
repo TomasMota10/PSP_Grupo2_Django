@@ -133,3 +133,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
 
 AUTH_USER_MODEL = 'user.User'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)

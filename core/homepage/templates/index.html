@@ -36,10 +36,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Inicio</a>
+        <a href="https://cadiz.salesianos.edu" class="nav-link">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contacto</a>
+        <a href="https://www.facebook.com/SalesianosSanIgnacioCadiz/" class="nav-link">Contacto</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">{{ request.user.username }}</a>
       </li>
     </ul>
 
@@ -55,6 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Pagina de Inicio</h1>
+            <span>Bienvenido al sistema de AlmaGest {{ request.user.username }}!</span>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -77,7 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AlmaGest.com</a>.</strong> Los derechos de AlmaGest se encuentran reservado.
+    <strong>Copyright de <b><font color="#FF0000">AlmaGest</font></b> &copy; 2022,  <a href="https://github.com/TomasMota10?tab=repositories">AlmaGest.com</a>.</strong> Los derechos de AlmaGest se encuentran reservados por Tomás Mota y Fran Luna.
   </footer>
 </div>
 <!-- ./wrapper -->

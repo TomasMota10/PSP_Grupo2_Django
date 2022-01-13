@@ -28,5 +28,5 @@ class LogoutView(RedirectView):
 
     def dispatch(self, request, *args, **kwargs):
         logout(request)
-        messages.success(request, 'Logout con éxito')
+        messages.success(request, 'Has cerrado sesión correctamente')
         return super().dispatch(request, *args, **kwargs)

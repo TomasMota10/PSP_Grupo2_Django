@@ -21,7 +21,7 @@ class UserCreateView(CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario registrado con éxito')
+            messages.success(request, 'El usuario ha sido registrado correctamente.')
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form))
@@ -50,7 +50,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario Modificado con éxito')
+            messages.success(request, 'El usuario ha sido editado con éxito')
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form))
