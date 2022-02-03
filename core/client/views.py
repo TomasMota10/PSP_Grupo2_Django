@@ -27,12 +27,14 @@ class ClientListView(LoginRequiredMixin, ListView):
         context['entity'] = 'Clientes'
         return context
 
+@method_decorator(is_admin, name="dispatch")
 def ClientActivateView(request,pk):
     User.objects.filter(pk=pk).update(activo=1)
     messages.success(request, 'El cliente ha sido activado correctamente.')
     url = reverse('adm:client_list')
     return HttpResponseRedirect(url)
 
+@method_decorator(is_admin, name="dispatch")
 def ClientDeactivateView(request,pk):
     User.objects.filter(pk=pk).update(activo=0)
     messages.success(request, 'El cliente ha sido desactivado correctamente.')

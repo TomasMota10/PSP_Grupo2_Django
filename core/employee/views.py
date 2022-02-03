@@ -68,7 +68,7 @@ class EmployeeCreateView(LoginRequiredMixin,CreateView):
         messages.success(self.request, 'El empleado ha sido registrado correctamente.')
         return reverse('adm:employee_list')
 
-
+@method_decorator(same_user, name="dispatch")
 class EmployeeUpdateView(LoginRequiredMixin,CreateView):
     model = User
     form_class = EmployeeForm

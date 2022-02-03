@@ -20,6 +20,7 @@ from core.decorators import *
 from django.utils.decorators import method_decorator
 
 # Create your views here.
+@method_decorator(is_employee, name="dispatch")
 class ProjectListView(LoginRequiredMixin, ListView):
     paginate_by = 3
     page_kwarg = 'page'
@@ -36,7 +37,7 @@ class ProjectListView(LoginRequiredMixin, ListView):
         context['create_url'] = reverse_lazy('project:project_create')
         return context
 
-
+@method_decorator(is_employee, name="dispatch")
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
@@ -99,6 +100,7 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
         context['list_url'] = self.success_url
         return context
 
+@method_decorator(is_employee, name="dispatch")
 class ProjectHistoryEmployeesView(LoginRequiredMixin, ListView):
     template_name = 'project/listP.html'
     model = Project
@@ -106,12 +108,12 @@ class ProjectHistoryEmployeesView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Historial de Proyectos en AlmaGest.'
-        context['projects'] = Project.objects.filter(empleado=self.request.user, fechaFin__lt = datetime.now() )
+        context['projects'] = Project.objects.filter(empleado=self.request.user, fechaFin__lt = datetime.now() ).order_by('fechaFin')
         return context
 
     # def get_queryset(self):
         # return Project.objects.filter(empleado=self.request.user, fechaFin__lt = datetime.now() )
-
+@method_decorator(is_client, name="dispatch")
 class ProjectHistoryClientsView(LoginRequiredMixin, ListView):
     template_name = 'project/listP.html'
     model = Project
@@ -119,10 +121,11 @@ class ProjectHistoryClientsView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Historial de Proyectos en AlmaGest.'
-        projects = Project.objects.filter(participa__cliente = self.request.user, fechaFin__lt = datetime.now())
+        projects = Project.objects.filter(participa__cliente = self.request.user, fechaFin__lt = datetime.now()).order_by('fechaFin')
         context['projects'] = projects
         return context
 
+@method_decorator(is_client, name="dispatch")
 class UpcomingProject(LoginRequiredMixin, ListView):
     template_name = 'project/listP.html'
     model = Project
@@ -134,6 +137,7 @@ class UpcomingProject(LoginRequiredMixin, ListView):
         context['projects'] = projects
         return context
 
+@method_decorator(is_client, name="dispatch")
 class ProjectInscriptionView(LoginRequiredMixin, ListView):
     model = Project
     template_name = 'project/listC.html'
@@ -191,7 +195,7 @@ class ProjectClientsView(LoginRequiredMixin, ListView):
         return HttpResponseRedirect(reverse('project:project_clients', kwargs={'pk': self.kwargs.get('pk')}))
         
 
-
+@method_decorator(is_client, name="dispatch")
 def InscriptionCreate(request,pk):
     project = Project.objects.filter(pk=pk).first()
     if project is not None:

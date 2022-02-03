@@ -13,7 +13,10 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.mixins import ValidatePermissionRequiredMixin
 
+from core.decorators import *
+from django.utils.decorators import method_decorator
 # Create your views here.
+@method_decorator(is_admin, name="dispatch")
 class CategoryListView(LoginRequiredMixin, ListView):
     model = Category
     template_name = 'category/list.html'
@@ -26,6 +29,7 @@ class CategoryListView(LoginRequiredMixin, ListView):
         context['create_url'] = reverse_lazy('adm:category_create')
         return context
 
+@method_decorator(is_admin, name="dispatch")
 class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category
     form_class = CategoryForm
@@ -42,6 +46,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, 'La categoría ha sido añadida correctamente.')
         return reverse('adm:category_list')
 
+@method_decorator(is_admin, name="dispatch")
 class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = Category
     form_class = CategoryForm
@@ -58,6 +63,7 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, 'La categoría ha sido actualizada correctamente.')
         return reverse('adm:category_list')
 
+@method_decorator(is_admin, name="dispatch")
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
     template_name = 'category/delete.html'
