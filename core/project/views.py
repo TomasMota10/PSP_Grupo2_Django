@@ -159,7 +159,7 @@ class ProjectInscriptionView(LoginRequiredMixin, ListView):
             projects = Project.objects.filter(categoria_id=categoria).exclude(pk__in = idProj)
         else:
             projects = Project.objects.filter().exclude(pk__in = idProj)
-            print(projects)
+            # print(projects)
 
         context['projects'] = projects
         context['categories'] = Category.objects.all()
@@ -189,6 +189,7 @@ class ProjectClientsView(LoginRequiredMixin, ListView):
         Participa.objects.filter(proyecto_id=self.kwargs.get('pk'),cliente_id=self.request.POST.get('cliente_id')).update(rol=self.request.POST.get('rol'))
         messages.success(request, 'Se le ha asignado el rol al usuario correctamente.')
         return HttpResponseRedirect(reverse('project:project_clients', kwargs={'pk': self.kwargs.get('pk')}))
+        
 
 
 def InscriptionCreate(request,pk):
@@ -200,7 +201,7 @@ def InscriptionCreate(request,pk):
         inscripcion.fechaInscripcion = datetime.today()
         inscripcion.save()
 
-        messages.success(request, 'Se ha inscrito en el proyecto correctamente.')
+        messages.success(request, 'Se ha apuntado en el proyecto correctamente.')
     else:
         messages.success(request, 'Oh oh, usted no se ha podido inscribir correctamente en este proyecto.')
     

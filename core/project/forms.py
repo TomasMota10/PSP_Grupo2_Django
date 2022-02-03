@@ -5,7 +5,7 @@ class ProjectForm(ModelForm):
 
     class Meta:
         model = Project
-        fields = ['titulo','descripcion','nivel','fechaInicio','fechaFin','categoria']
+        fields = ['titulo','descripcion','nivel','fechaInicio','fechaFin','informePrevio','categoria']
         widgets = {
             'titulo': TextInput(
                 attrs={
@@ -33,9 +33,15 @@ class ProjectForm(ModelForm):
                    'type': 'date'
                 },
                 format=('%Y-%m-%d')
-            )
-                   
+            ), 
+            'informePrevio': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese el informe previo del proyecto.',
+                }
+            )    
         }
+
+        exclude=['empleado_id']
 
 # class InscriptionForm(ModelForm):
 #     class Meta:
