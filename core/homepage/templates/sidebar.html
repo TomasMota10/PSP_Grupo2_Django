@@ -1,0 +1,114 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      {% if not request.user.is_authenticated %}
+      <span class="brand-text font-weight-light"><b><font color="#33FFFF">AlmaGest</font></b></span>
+      {% else %}
+      <span class="brand-text font-weight-light"><b><font color="#33FFFF">AlmaGest</font></b></span>
+      {% endif %}
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a href="{% url 'login' %}" class="nav-link">
+                  <i class="fas fa-sign-in-alt"></i>
+                  <p> Inicio de sesión en el sistema</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'client:client_create' %}" class="nav-link">
+                  <i class="fa fa-user-plus"></i>
+                  <p> Registrese en el sistema</p>
+                </a>
+              </li>
+              {% else %}
+              {% if request.user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'adm:client_list'%}">
+                  <i class="fas fa-user" aria-hidden="true"></i>
+                  <p> Clientes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'adm:employee_list'%}">
+                  <i class="fas fa-user-tie" aria-hidden="true"></i>
+                  <p> Empleados</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'adm:category_list'%}">
+                  <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                  <p> Categorías</p>
+              </a>
+            </li>
+            {% elif request.user.role_user == 'Cliente' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'project:project_inscription' %}">
+                    <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                    <p> Proyectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'project:project_client_history' %}">
+                    <i class="fas fa-history" aria-hidden="true"></i>
+                    <p> Historial de Proyectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'project:project_upcoming' %}">
+                    <i class="fas fa-calendar-week" aria-hidden="true"></i>
+                    <p> Siguientes Proyectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'client:client_update' pk=request.user.id %}">
+                    <i class="fas fa-user-edit" aria-hidden="true"></i>
+                    <p> Editar Perfil </p>
+                </a>
+              </li>
+              {% elif request.user.role_user == 'Empleado' %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'project:project_list' %}">
+                  <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                  <p> Gestiones de Proyectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'project:project_employee_history' %}">
+                    <i class="fas fa-history" aria-hidden="true"></i>
+                    <p> Historial de Proyectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'adm:employee_update' pk=request.user.id %}">
+                    <i class="fas fa-user-edit" aria-hidden="true"></i>
+                    <p> Editar Perfil</p>
+                </a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    <p> Cerrar sesión</p>
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  

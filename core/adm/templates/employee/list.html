@@ -1,0 +1,34 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 15%;">Nombre del empleado</th>
+        <th scope="col" style="width: 15%;">Apellidos del empleado</th>
+        <th scope="col" style="width: 10%;">DNI</th>
+        <th scope="col" style="width: 15%;">Dirección</th>
+        <th scope="col" style="width: 15%;">Biografía</th>
+        <th scope="col" style="width: 15%;">Acciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    {% for empl in employees %}
+    <tr>
+        <td>{{ empl.nombre }}</td>
+        <td>{{ empl.apellidos }}</td>
+        <td>{{ empl.dni }}</td>
+        <td>{{ empl.direccion }}</td>
+        <td>{{ empl.biografia }}</td>
+        <td><a href="{% url 'adm:employee_update' pk=empl.id %}" class="btn btn-info btn-flat">Editar</a>
+        <a href="{% url 'adm:employee_delete' pk=empl.id %}" class="btn btn-danger btn-flat">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

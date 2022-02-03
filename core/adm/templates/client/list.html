@@ -1,0 +1,42 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 15%;">Nombre del cliente</th>
+        <th scope="col" style="width: 15%;">Apellidos del cliente</th>
+        <th scope="col" style="width: 10%;">DNI</th>
+        <th scope="col" style="width: 15%;">Dirección</th>
+        <th scope="col" style="width: 15%;">Fecha de Nacimiento</th>
+        <th scope="col" style="width: 15%;">Roles</th>
+        <th scope="col" style="width: 15%;">Acciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    {% for client in clients %}
+    <tr>
+        <td>{{ client.nombre }}</td>
+        <td>{{ client.apellidos }}</td>
+        <td>{{ client.dni }}</td>
+        <td>{{ client.direccion }}</td>
+        <td>{{ client.fechaNacimiento }}</td>
+        <td>
+        {% if client.activo == 0 %}
+        <a href="{% url 'adm:client_activate' pk=client.id %}" class="btn btn-success btn-flat">Activar</a></td>
+        {% else %}
+        <a href="{% url 'adm:client_deactivate' pk=client.id %}" class="btn btn-warning btn-flat">Desactivar</a>
+        {% endif %}
+        <td>
+        <a href="{% url 'adm:client_update' pk=client.id %}" class="btn btn-info btn-flat">Editar</a>
+        <a href="{% url 'adm:client_delete' pk=client.id %}" class="btn btn-danger btn-flat">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

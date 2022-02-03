@@ -1,0 +1,60 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+
+{% endblock %}
+
+{% block columns %}
+    <!-- <tr>
+        <th scope="col" style="width: 15%;">Nombre</th>
+        <th scope="col" style="width: 15%;">Categoría</th>
+    </tr> -->
+{% endblock %}
+
+{% block rows %}
+<nav class="navbar navbar-light bg-light">
+  <form class="container-fluid" action="{% url 'project:project_inscription'%}">
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">Filtros: </span>
+      <select class="form-select" aria-label="Default select example" name="category">
+        <option selected disabled>Categorías</option>
+        <option value="0">Ver todas</option>
+        {% for cat in categories %}
+        <option value="{{ cat.pk }}">{{ cat.nombre }}</option>
+        {% endfor %}
+      </select>
+      <span class="input-group-text" id="basic-addon1">Fecha de Inicio del proyecto: </span>
+      <input type="date" class="form-control" name="fechaIni">
+      <span class="input-group-text" id="basic-addon1">Fecha Final del proyecto: </span>
+      <input type="date" class="form-control" name="fechaFin">
+      <button type="submit" class="btn btn-primary">Buscar proyectos</button>
+    </div>
+  </form>
+</nav>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for project in projects %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{project.categoria.foto.url}}" width="50" height="150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ project.titulo}}</h5>
+              <p class="card-text">Nivel: {{ project.nivel }}</p>
+              <p class="card-text">{{ project.descripcion }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Del {{ project.fechaInicio}} al {{ project.fechaFin }}</small>
+            </div>
+            <a href="{% url 'project:project_inscription_create' pk=project.id %}" class="btn btn-info">¡Apuntarse aquí!</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block buttons_list %}
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

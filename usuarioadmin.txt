@@ -1,0 +1,7 @@
+* Administrator 1*
+Username: Felix
+Password: RZFDb6rW
+
+* Administrator 2*
+Username: Administrador
+Password: RZFDb7rW

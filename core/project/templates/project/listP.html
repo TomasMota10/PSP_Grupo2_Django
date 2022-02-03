@@ -1,0 +1,40 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+
+{% endblock %}
+
+{% block columns %}
+    <!-- <tr>
+        <th scope="col" style="width: 15%;">Nombre</th>
+        <th scope="col" style="width: 15%;">Categoría</th>
+    </tr> -->
+{% endblock %}
+
+{% block rows %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for project in projects %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{project.categoria.foto.url}}" width="50" height="150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ project.titulo }}</h5>
+              <p class="card-text">Nivel: {{ project.nivel }}</p>
+              <p class="card-text">{{ project.descripcion }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Del {{ project.fechaInicio}} al {{ project.fechaFin }}</small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block buttons_list %}
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %} 

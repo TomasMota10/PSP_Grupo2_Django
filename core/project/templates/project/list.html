@@ -1,0 +1,76 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+
+{% endblock %}
+
+{% block columns %}
+    <!-- <tr>
+        <th scope="col" style="width: 15%;">Nombre del proyecto</th>
+        <th scope="col" style="width: 15%;">Descripción</th>
+        <th scope="col" style="width: 15%;">Nivel del proyecto</th>
+        <th scope="col" style="width: 15%;">Periodo</th>
+        <th scope="col" style="width: 15%;">Informe Final</th>
+        <th scope="col" style="width: 15%;">Empleado</th>
+        <th scope="col" style="width: 15%;">Categoría</th>
+    </tr> -->
+{% endblock %}
+
+{% block rows %}
+<div class="row row-cols-1 row-cols-md-1 g-2">
+    {% for project in page_obj %}
+      <div class="col">
+        <div class="card" style="width: auto; height: auto">
+            <div class="row g-0">
+              <!-- <div class="col-md-4">
+                <img src="{{project.categoria.foto.url}}" class="img-fluid rounded-start" alt="...">
+              </div> -->
+              <div class="col-md-12">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                    <h5 class="card-title">Título: {{ project.titulo }}</h5>
+                    <p class="card-text">Nivel: {{ project.nivel }}</p>
+                    <p class="card-text">Categoría: {{ project.categoria.nombre }}</p>
+                    <p class="card-text">Descripción: {{ project.descripcion }}</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">Informe Final: {{ project.informeFinal }}</p>
+                        <p class="card-text">Periodo: {{ project.fechaInicio}} al {{ project.fechaFin }}</p>
+                    </div>
+                </div>
+                    <div class="card-footer">
+                        <a href="{% url 'project:project_clients' pk=project.id %}" class="btn btn-success">Ver Clientes</a>
+                        <a href="{% url 'project:project_update' pk=project.id %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'project:project_delete' pk=project.id %}" class="btn btn-danger">Eliminar</a>
+                      </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Primera</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+        {% endif %}
+    </span>
+</div>   
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
