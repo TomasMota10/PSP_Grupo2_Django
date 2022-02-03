@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
                 ('nivel', models.IntegerField(verbose_name='nivel')),
                 ('fechaInicio', models.DateField(verbose_name='fechaInicio')),
                 ('fechaFin', models.DateField(verbose_name='fechaFin')),
+                ('informePrevio', models.CharField(max_length=255, verbose_name='informePrevio')),
                 ('informeFinal', models.CharField(max_length=255, verbose_name='informeFinal')),
                 ('categoria', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='categoria', to='category.category', verbose_name='idCategoria')),
                 ('empleado', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='empleado', to='user.user', verbose_name='idEmpleado')),

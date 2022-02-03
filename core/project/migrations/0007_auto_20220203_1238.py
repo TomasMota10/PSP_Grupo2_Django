@@ -51,6 +51,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='project',
+            name='informePrevio',
+            field=models.CharField(max_length=255, verbose_name='Informe Previo del Proyecto'),
+        ),
+        migrations.AlterField(
+            model_name='project',
             name='informeFinal',
             field=models.CharField(max_length=255, verbose_name='Informe Final del Proyecto'),
         ),

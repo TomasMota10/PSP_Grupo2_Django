@@ -23,7 +23,7 @@
               {% csrf_token %}
               <input type="hidden" name="cliente_id" value="{{ client.cliente.id }}"/>
               <div class="form-group">
-                <label style="margin-left: 20px">Rol: </label>
+                <label style="margin-left: 20px">Nuevo Rol: </label>
               <select class="form-select" aria-label="Default select example" name="rol">
                 {% for rol in roles %}
                 <option {% if rol == client.rol %} selected {% endif %}>{{ rol }}</option>

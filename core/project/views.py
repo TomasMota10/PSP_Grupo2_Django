@@ -45,7 +45,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Añadir Proyecto en AlmaGest.'
+        context['title'] = 'Registrar un nuevo Proyecto en AlmaGest.'
         context['list_url'] = reverse_lazy('project:project_list')
         return context
     
@@ -57,7 +57,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
             project = form.save(commit=False)
             project.empleado = User.objects.filter(pk=self.request.user.id).first()
             project.save()
-            messages.success(request, 'Proyecto registrado con éxito')
+            messages.success(request, 'El proyecto ha sido registrado correctamente.')
             return HttpResponseRedirect(reverse('project:project_list'))
         else:
             return self.render_to_response(self.get_context_data(form=form))
