@@ -133,7 +133,10 @@ class UpcomingProject(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Aquí puedes ver los siguientes proyectos de AlmaGest.'
-        projects = Project.objects.filter(fechaInicio__gte = (datetime.strftime((datetime.today() + timedelta(days=-datetime.today().weekday(), weeks=1)), '%Y-%m-%d')))
+        date = datetime.today()
+        week = date.strftime("%V")
+        week = int(week) + 1
+        projects = Project.objects.filter(fechaInicio__week = week).order_by('-fechaInicio')
         context['projects'] = projects
         return context
 
@@ -168,7 +171,6 @@ class ProjectInscriptionView(LoginRequiredMixin, ListView):
         context['projects'] = projects
         context['categories'] = Category.objects.all()
         context['title'] = 'Lista de Proyectos disponibles en AlmaGest.'
-
         context['create_url'] = reverse_lazy('project:project_inscription')
         return context    
 
