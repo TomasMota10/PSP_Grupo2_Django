@@ -10,3 +10,4 @@ from django.http import HttpResponseRedirect, JsonResponse
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.mixins import ValidatePermissionRequiredMixin
+
