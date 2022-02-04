@@ -196,8 +196,6 @@ class ProjectClientsView(LoginRequiredMixin, ListView):
         messages.success(request, 'Se le ha asignado el rol al usuario correctamente.')
         return HttpResponseRedirect(reverse('project:project_clients', kwargs={'pk': self.kwargs.get('pk')}))
         
-
-@method_decorator(is_client, name="dispatch")
 def InscriptionCreate(request,pk):
     project = Project.objects.filter(pk=pk).first()
     if project is not None:
