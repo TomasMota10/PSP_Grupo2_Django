@@ -1,0 +1,50 @@
+{% extends 'list.html' %}
+{% load static %}
+
+{% block rows %}
+<nav class="navbar navbar-light bg-light">
+  <form class="container-fluid" action="{% url 'project:project_inscription'%}">
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">Filtrar por: </span>
+      <select class="form-select" aria-label="Default select example" name="category">
+        <option selected disabled>Categorías</option>
+        <option value="0">Ver todas</option>
+        {% for cat in categories %}
+        <option value="{{ cat.pk }}">{{ cat.nombre }}</option>
+        {% endfor %}
+      </select>
+      <span class="input-group-text" id="basic-addon1">Fecha de Inicio: </span>
+      <input type="date" class="form-control" name="fechaIni">
+      <span class="input-group-text" id="basic-addon1">Fecha Final: </span>
+      <input type="date" class="form-control" name="fechaFin">
+      <button type="submit" class="btn btn-warning"><i class="fa fa-fa fa-search"></i>Buscar</button>
+    </div>
+  </form>
+</nav>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for project in projects %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{project.categoria.foto.url}}" width="50" height="150" class="card-img-top img-responsive" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title text-danger">{{ project.titulo}}</h5>
+              <p class="card-text text-success">Nivel: {{ project.nivel }}</p>
+              <p class="card-text text-primary">{{ project.descripcion }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ project.fechaInicio}} - {{ project.fechaFin }}</small>
+            </div>
+            <a href="{% url 'project:project_inscription_create' pk=project.id %}" class="btn btn-primary"><i class="fa fa-edit"></i> Inscribirse</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block buttons_list %}
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

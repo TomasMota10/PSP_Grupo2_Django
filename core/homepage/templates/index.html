@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>#ADMIN | Página Oficial</title>
+  {% include 'css.html' %}
+</head>
+<body>
+
+  <div class="container-xxl position-relative bg-white d-flex p-0">
+
+    {% include 'sidebar.html' %}
+
+    <div class="content">
+      
+      {% include 'menu.html' %}
+      
+      {% block content %}
+
+        <div class="container-fluid">
+          <div class="row g-4 mt-3">
+            <div class="col-lg-12">
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                  <i class="fa fa-exclamation-circle me-2"></i>Bienvenido a nuestro sistema de gestión: {{ request.user.nombre}} {{ request.user.apellidos}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      {% endblock %}
+    
+    </div>
+
+</div>
+<!-- REQUIRED SCRIPTS -->
+{% include 'js.html' %}
+
+{% if messages %}
+{% for m in messages %}
+    <script>
+        Swal.fire({
+            title: 'Información',
+            text: "{{m}}",
+            icon: 'success'
+        })
+    </script>     
+{% endfor %}
+{% endif %}
+
+</body>
+</html>

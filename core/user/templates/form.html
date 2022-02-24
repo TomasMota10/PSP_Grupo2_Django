@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>#ADMIN | Página Oficial</title>
+  {% include 'css.html' %}
+</head>
+<body>
+
+  <div class="container-xxl position-relative bg-white d-flex p-0">
+
+    {% include 'sidebar.html' %}
+
+    <div class="content">
+      
+      {% include 'menu.html' %}
+      
+      {% block content %}
+
+        <div class="container-fluid">
+        
+        <div class="row mt-5 mb-2">
+            <div class="col-lg-12"><h3 class="text-primary">{{ title }}</h3></div>
+        </div>
+
+          <div class="row g-4">
+            <div class="col-lg-12">
+                <form method="post" action="." enctype="multipart/form-data">
+                    {% csrf_token %}
+                   
+                    <input type="hidden" name="action" value="{{ action }}">
+                    {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+    
+                    <div class="row">
+                        {% for field in form.visible_fields %}
+                            <div class="form-floating mb-2">
+                                {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                                <label for="floatingText">{{ field.label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <button type="submit" class="btn btn-primary mt-4 mb-4"><i class="fa fa-edit"></i> {{ action }}</button>
+                    </div>
+                </div>
+            
+        </form>
+            </div>
+          </div>
+        </div>
+      
+      {% endblock %}
+    
+    </div>
+
+</div>
+<!-- REQUIRED SCRIPTS -->
+{% include 'js.html' %}
+
+{% if messages %}
+{% for m in messages %}
+    <script>
+        Swal.fire({
+            title: 'Información',
+            text: "{{m}}",
+            icon: 'success'
+        })
+    </script>     
+{% endfor %}
+{% endif %}
+
+</body>
+</html>

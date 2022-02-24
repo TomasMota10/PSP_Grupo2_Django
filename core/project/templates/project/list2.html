@@ -1,0 +1,65 @@
+{% extends 'list.html' %}
+ {% load static %}
+ {% block head_list %}
+
+ {% endblock %}
+
+ {% block columns %}
+     <!-- <tr>
+         <th scope="col" style="width: 15%;">Nombre</th>
+         <th scope="col" style="width: 15%;">Categoría</th>
+     </tr> -->
+ {% endblock %}
+
+ {% block rows %}
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <div class="container-fluid">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <a href="{% url 'project:project_clients_participation' %}" class="navbar-brand" style="margin-right: 40px">Ver Roles de Clientes:</a>
+         <form class="d-flex">
+           <select style="margin-right: 10px;width:150px" class="form-control" aria-label=".form-select-lg example" name="rol">
+             <option selected disabled>Rol</option>
+             {% for rol in roles %}
+             <option>{{ rol }}</option>
+             {% endfor %}
+           </select>
+           <select style="margin-right: 10px;width:200px" class="form-control" aria-label=".form-select-lg example" name="project">
+              <option selected disabled>Proyectos</option>
+              {% for proj in projects %}
+              <option {% if proj.id == project %} selected {% endif %} value="{{proj.id}}">{{ proj.titulo }}</option>
+              {% endfor %}
+            </select>
+           <button class="btn btn-outline-primary" type="submit">Filtrar</button>
+         </form>
+       </div>
+     </div>
+   </nav>
+     <div class="row row-cols-1 row-cols-md-3 g-4">
+       {% for p in participations %}
+         <div class="col">
+           <div class="card h-100">
+             <img src="{{p.proyecto.categoria.foto.url}}" width="50" height="150" class="card-img-top" alt="...">
+             <div class="card-body">
+               <h5 class="card-title">Cliente: {{p.cliente.nombre}} {{p.cliente.apellidos}}</h5>
+               <p class="card-text text-danger">Proyecto en el que participa: {{p.proyecto.titulo}}</p>
+               <p class="card-text text-success">Rol dentro del proyecto: {{p.rol}}</p>
+             </div>
+             <div class="card-footer">
+               <small class="text-muted">Periodo: {{p.proyecto.fechaInicio}} hasta el {{p.proyecto.fechaFin}}</small>
+             </div>
+           </div>
+         </div>
+       {% endfor %}
+     </div>
+ {% endblock %}
+
+ {% block buttons_list %}
+
+ {% endblock %}
+
+ {% block javascript %}
+
+ {% endblock %}

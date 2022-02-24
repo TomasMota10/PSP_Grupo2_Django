@@ -1,0 +1,50 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+
+{% endblock %}
+
+{% block columns %}
+
+{% endblock %}
+
+{% block rows %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for client in page_obj %}
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title text-primary">{{ client.cliente.nombre }} {{ client.cliente.apellidos }}</h5>
+              <p class="card-text text-danger">E-mail: {{ client.cliente.email }}</p>
+            </div>
+            <form method='post'>
+              {% csrf_token %}
+              <input type="hidden" name="cliente_id" value="{{ client.cliente.id }}"/>
+              <div class="form-group">
+                <label style="margin-left: 20px">Nuevo Rol: </label>
+              <select class="form-select" aria-label="Default select example" name="rol">
+                {% for rol in roles %}
+                <option {% if rol == client.rol %} selected {% endif %}>{{ rol }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="card-footer">
+            </div>
+          <button type="submit" class="btn btn-primary">Añadir nuevo Rol</button>
+        </form>
+        </div>
+      </div>
+      {% endfor %}
+      {% if page_obj.count == 0 %}
+      <h5>No se encuentran clientes disponibles para este proyecto.</h5> 
+      {% endif %}
+    </div>
+{% endblock %}
+
+{% block buttons_list %}
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
