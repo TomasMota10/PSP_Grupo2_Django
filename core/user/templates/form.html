@@ -12,11 +12,7 @@
 
   <div class="container-xxl position-relative bg-white d-flex p-0">
 
-    {% include 'sidebar.html' %}
-
     <div class="content">
-      
-      {% include 'menu.html' %}
       
       {% block content %}
 
@@ -58,6 +54,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <button type="submit" class="btn btn-primary mt-4 mb-4"><i class="fa fa-edit"></i> {{ action }}</button>
+                        <input type="button" onclick="history.back()" class="btn btn-danger mt-4 mb-4" class="fa fa-exit" value="Cancelar"/>
                     </div>
                 </div>
             

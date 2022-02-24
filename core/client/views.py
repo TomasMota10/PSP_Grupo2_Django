@@ -50,7 +50,7 @@ class ClientCreateView(CreateView):
         context = super(ClientCreateView, self).get_context_data(**kwargs)    
         context['title'] = '#ADMIN | Registrarse'
         context['list_url'] = self.success_url
-        context['action'] = 'Añadir'
+        context['action'] = 'Registrar'
         return context
 
     def post(self, request, *args, **kwargs):

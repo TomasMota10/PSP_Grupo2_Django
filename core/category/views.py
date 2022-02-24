@@ -40,6 +40,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Registrar nueva Categoría.'
         context['list_url'] = reverse_lazy('adm:category_list')
+        context['action'] = 'Añadir'
         return context
 
     def get_success_url(self):

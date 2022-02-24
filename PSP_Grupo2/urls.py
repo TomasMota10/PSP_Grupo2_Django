@@ -27,5 +27,6 @@ urlpatterns = [
     path('client/', include('core.client.urls')),
     path('adm/', include('core.adm.urls')),
     path('admin/proyectos/',include('core.project.urls')),
-    path('employee/', include('core.employee.urls'))
+    path('employee/', include('core.employee.urls')),
+    path('apiproject/', include('core.apiproject.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

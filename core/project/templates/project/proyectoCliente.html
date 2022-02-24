@@ -1,163 +1,142 @@
+<!DOCTYPE html>
 <html>
-{% load static %}
-  <head>
-    <meta charset="utf-8">
-    <style type="text/css">
-    @font-face {
-    font-family: Pacifico;
-    src: url(pacifico.ttf);
-  }
-  @font-face {
-    font-family: Source Sans Pro;
-    font-weight: 400;
-    src: url(sourcesanspro-regular.otf);
-  }
-  @font-face {
-    font-family: Source Sans Pro;
-    font-weight: 700;
-    src: url(sourcesanspro-bold.otf);
-  }
+<head>
+<style>
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+html {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+body {
+  margin: 0;
+}
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 297mm;
+  width: 60mm;
+  background-color: red;
+  color: white;
+}
+#heading {
+  background-color: black;
+  padding-bottom: 20mm;
+}
+h1 {
+  font-family: monospace;
+  font-size: 30px;
+  margin: 0;
+  margin-top: 30px;
+  padding: 20px;
+}
+h2 {
+  font-size: 24px;
+  letter-spacing: 3px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0 20px;
+}
+#company {
+  color: black;
+  bottom: 0;
+  left: 0;
+  padding: 0 0 20px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 26px;
+  letter-spacing: 1.4px;
+}
+#company a {
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 13px;
+  letter-spacing: 0;
+  color: white;
+}
 
-  @page {
-    font-family: Pacifico;
-    margin: 3cm;
-  }
+.tablaDiv{
+  background: #66FFFF;
+  margin-top: 10px;
+  border: thin solid #000000;
+  width: 200px;
+}
 
-  html {
-    color: #14213d;
-    font-family: Source Sans Pro;
-    font-size: 11pt;
-    line-height: 1.6;
-  }
-  body {
-    margin: 0;
-  }
+#menu {
+  margin: 3mm 20mm 3mm 60mm;
+  height: 290mm;
+  box-sizing: border-box;
+}
+#columns {
+  column-count: 2;
+}
+.section {
+  width: 90mm;
+  padding: 0 6mm;
+}
+h3 {
+  font-size: 25px;
+  margin-top: 20px;
+  padding: 0 6mm;
+}
+h4 {
+  clear: both;
+  font-weight: normal;
+}
+.price {
+  display: block;
+  float: right;
+  color: gray;
+  line-height: 28px;
+}
+.title {
+  line-height: 28px;
+  font-size: 24px;
+  font-family: monospace;
+}
+.description {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
 
-  h1 {
-    color: #1ee494;
-    font-family: Pacifico;
-    font-size: 40pt;
-    margin: 0;
-  }
+table{
+  margin: 2 6mm;
+  width: 50%;
+  padding-top: 7px;
+  border: 1px solid black;
+}
 
-  aside {
-    display: flex;
-    margin: 2em 0 4em;
-  }
-  aside address {
-    font-style: normal;
-    white-space: pre-line;
-  }
-  aside address#from {
-    color: #a9a;
-    flex: 1;
-  }
-  aside address#to {
-    text-align: right;
-  }
+</style>
+</head>
+<body>
+  <div id="sidebar">
+    <div id="heading">
+    <img style="margin-left: 10px;margin-top: 10px;" width="150" height="90" src="https://salesianosrioja.com/wp-content/uploads/2016/03/Logo-Salesianos_vertical.png"/>
+    </div>
 
-  dl {
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
-  }
-  dt, dd {
-    display: inline;
-    margin: 0;
-  }
-  dt {
-    color: #a9a;
-  }
-  dt::before {
-    content: '';
-    display: block;
-  }
-  dt::after {
-    content: ':';
-  }
+    <div id="company">
+      <div><a href="https://cadiz.salesianos.edu/">Web: cadiz.salesianos.edu</a></div>
+    </div>
+  </div>
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  th {
-    border-bottom: .2mm solid #a9a;
-    color: #a9a;
-    font-size: 10pt;
-    font-weight: 400;
-    padding-bottom: .25cm;
-    text-transform: uppercase;
-  }
-  td {
-    padding-top: 3mm;
-  }
-  td:last-of-type {
-    color: #1ee494;
-    font-weight: bold;
-    text-align: right;
-  }
-  th, td {
-    text-align: center;
-  }
-  th:first-of-type, td:first-of-type {
-    text-align: left;
-  }
-  th:last-of-type, td:last-of-type {
-    text-align: right;
-  }
-  table#total {
-    background: #f6f6f6;
-    border-color: #f6f6f6;
-    border-style: solid;
-    border-width: 2cm 3cm;
-    bottom: 0;
-    font-size: 20pt;
-    margin: 0 -3cm;
-    position: absolute;
-    width: 18cm;
-  }
-      </style>
-    <title># ADMIN || Informes </title>
-    <meta name="description" content="Invoice demo sample">
-  </head>
-
-  <body>
-    <h1></h1>
-
-    <aside>
-      <address id="from">
-        <p>#ADMIN</p>
-      </address>
-
-    </aside>
-
-    <dl id="informations">
-      <dt>N° de Factura</dt>
-      <dd>23052001</dd>
-      <dt>Periodo</dt>
-      <dd>24 de Febrero de 2022</dd>
-    </dl>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Proyecto</th>
-          <th>Descripción</th>
-          <th>Fecha de inicio</th>
-          <th>Fecha de finalización</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for proj in projects %}
-        <tr>
-          <td>{{proj.titulo}}</td>
-          <td>{{proj.descripcion}}</td>
-          <td>{{proj.fechaInicio}}</td>
-          <td>{{proj.fechaFin}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </body>
+  <h3>Listado de Projectos</h3>
+  <div style="margin-top: .5em;
+  margin-bottom: .5em;
+  margin-left: 1em;
+  margin-right: .5em;">
+  {% for project in projects %}
+  <table>
+    <tr>
+      <td>{{project.titulo}}</td>
+    </tr>
+    <tr>
+      <td> {{project.descripcion }}</td>
+    </tr>
+  </table>
+  {% endfor %}
+  </div>
+</body>
 </html>

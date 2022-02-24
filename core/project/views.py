@@ -57,6 +57,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Registrar un nuevo Proyecto.'
         context['list_url'] = reverse_lazy('project:project_list')
+        context['action'] = 'Añadir'
         return context
     
     def post(self, request, *args, **kwargs):
@@ -80,8 +81,9 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar Proyect.'
+        context['title'] = 'Editar Proyecto.'
         context['list_url'] = reverse_lazy('project:project_list')
+        context['action'] = 'Editar'
         return context
     
     def get_success_url(self):
@@ -122,7 +124,7 @@ class ProjectHistoryEmployeesView(LoginRequiredMixin, ListView):
 
     def post(self, request, *args, **kwargs):
          Project.objects.filter(pk=self.request.POST.get('id')).update(informeFinal=self.request.POST.get('informeFinal'))
-         messages.success(request, 'Informe final actualizado con éxito')
+         messages.success(request, 'El Informe final ha sido añadido correctamente ')
          url = reverse('project:project_employee_history')
          return HttpResponseRedirect(url)
 

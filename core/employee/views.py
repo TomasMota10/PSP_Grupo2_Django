@@ -48,7 +48,7 @@ class EmployeeCreateView(LoginRequiredMixin,CreateView):
         context = super(EmployeeCreateView, self).get_context_data(**kwargs)
         context['title'] = ' Registrar nuevo Empleado.'
         context['list_url'] = self.success_url
-        context['action'] = 'Añadir'
+        context['action'] = 'Registrar'
         return context
 
     def post(self, request, *args, **kwargs):
